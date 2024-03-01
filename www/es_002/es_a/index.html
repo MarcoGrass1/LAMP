@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+</head>
+<body>
+    <h1>Richiesta credenziali per l'accesso alla pagina riservata</h1>
+    <p>Dati: nome = marco, password=psswrd</p>   
+    <form method="GET" action="riservata.php">
+        <label for="nome" type="text">Username</label>
+        <input type="text" name="nome" placeholder="Inserenome utente"/>
+        <br/>
+        <br/>
+        <label for="password" type="password">Password</label>
+        <input type="password" name="password" placeholder="Password"/>
+        <br/>
+        <br/>
+        <input type="submit" name="invia"/>
+    </form>
+</body>
+</html>
