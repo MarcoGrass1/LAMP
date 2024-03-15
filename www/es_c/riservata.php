@@ -10,17 +10,8 @@
     <h1>Verifica dati inseriti</h1>
 
     <?php
-    session_start();
-
-    if (!isset($_SESSION['username'])) {
-        $url = 'login.php?error=Fare prima il login&from=';
-        $url .= basename($_SERVER['PHP_SELF']);
-        header("Location: $url");
-        exit();
-    }
-    $nome = $_SESSION['username'];
- 
-     echo "<b><h4>Benvenuto $nome <br/>Nell'area riservata del sito!</h4></b>";
+    include 'sessione.php';
+    riservata();
     ?>
     <p><a href="index.php">Home</a></p><br/>
     <p><a href="logout.php">Log Out</a></p>
