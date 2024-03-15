@@ -7,10 +7,10 @@
 </head>
 <body>
 <style> a{border: solid black 1px; background-color:#e6e6e6; border-radius:5px;}</style>
-<p><a href="login.php">Log In</a></p>
+<p><a href="es_c/login.php">Log In</a></p>
 <?php
     session_start();
-    echo '<p><a href="riservata.php">Pagina Riservata</a></p>';   
+    echo '<p><a href="es_c/riservata.php">Pagina Riservata</a></p>';   
  ?>   
 </body>
 </html>

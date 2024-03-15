@@ -5,8 +5,8 @@ function login(){
     <h1>Richiesta credenziali per l'accesso alla pagina riservata</h1>
     <p>Dati: username = marco, password=psswrd</p>   
     <form method="POST" action="login.php">
-        <label for="username" type="text">Username</label>
-        <input type="text" name="username" placeholder="Inserire username" required/>
+        <label for="email" type="text">email</label>
+        <input type="email" name="email" placeholder="Inserire email" required/>
         <br/>
         <br/>
         <label for="password" type="password">Password</label>
@@ -16,17 +16,28 @@ function login(){
         <input type="submit" name="ACCEDI"/>
     </form>
     LOGIN;
+    $conn=connect_db();
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $username = "marco"; 
-        $password = "psswrd";
+        // Recupera le credenziali dalla richiesta POST
+        $email = $_POST['email'];
+        $password = $_POST['password'];
 
-        if ($_POST['username'] === $username && $_POST['password'] === $password) {
-            $_SESSION['username'] = $username;
+        // Esegui la query per verificare le credenziali dell'utente
+        $query = "SELECT * FROM utenti WHERE email = '$email' AND password = '$password'";
+        $result = mysqli_query($conn, $query);
+
+        // Verifica se la query ha restituito risultati
+        if (mysqli_num_rows($result) > 0) {
+             // Chiudi la connessione al database
+            mysqli_close($conn);
             header('Location: riservata.php');
             exit();
         } else {
             echo "<p>Credenziali non valide. Riprova.</p> $logIn";
         }
+
+       
+
     } else echo $logIn;
 }
 
@@ -39,13 +50,13 @@ function logout(){
 function riservata(){
     session_start();
 
-    if (!isset($_SESSION['username'])) {
+    if (!isset($_SESSION['email'])) {
         $url = 'login.php?error=Fare prima il login&from=';
         $url .= basename($_SERVER['PHP_SELF']);
         header("Location: $url");
         exit();
     }
-    $nome = $_SESSION['username'];
+    $nome = $_SESSION['email'];
  
      echo "<b><h4>Benvenuto $nome <br/>Nell'area riservata del sito!</h4></b>";
 }
@@ -62,6 +73,7 @@ function connect_db(){
     if (!$conn) {
         die("Connessione fallita: " . mysqli_connect_error());
     }
+    return $conn;
 }
 
 ?>
