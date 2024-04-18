@@ -15,7 +15,7 @@ try {
 echo "Connessione al database riuscita<br>";
 // Recupera le credenziali dalla richiesta POST
 $email = "mrossi"; //$_POST['email'];
-$password = "1ff23"; //$_POST['password'];
+$password = "123"; //$_POST['password'];
 
 // Esegui la query per verificare le credenziali dell'utente
 $query = "SELECT * FROM utente WHERE Username = '$email' AND Password = '$password';";
